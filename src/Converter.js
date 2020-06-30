@@ -257,12 +257,12 @@ class Converter extends Component {
   };
 
   componentDidMount() {
-        fetch(
-          "http://data.fixer.io/api/latest?access_key=68a71656c8dbc1c3e46fc4e55b923445&format=1"
-        )
-          .then((res) => res.json())
-          .then((resjson) => this.setState({ data: resjson, loading: false }));
-        console.log(this.state.data);
+    fetch(
+      "http://data.fixer.io/api/latest?access_key=68a71656c8dbc1c3e46fc4e55b923445&format=1"
+    )
+      .then((res) => res.json())
+      .then((resjson) => this.setState({ data: resjson, loading: false }));
+    console.log(this.state.data);
     cur.map((c, ind) =>
       c.code === this.state.data.base
         ? this.setState({ baseName: c.currency })
@@ -278,8 +278,8 @@ class Converter extends Component {
       fromName,
       to,
       toCode,
-        toName,
-      toAmt
+      toName,
+      toAmt,
     } = this.state;
     return (
       <div className="">
@@ -405,8 +405,8 @@ class Converter extends Component {
                     // name="inputAmount"
                     // placeholder={`Enter ${fromName}`}
                     // onChange={this.onChangeHandler}
-                                    value={this.state.toAmt}
-                                    readOnly={true}
+                    value={this.state.toAmt}
+                    readOnly={true}
                   />
                 </div>
               </div>

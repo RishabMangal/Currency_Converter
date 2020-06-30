@@ -129,15 +129,15 @@ body{
 }
 .sym-input{
   background-color: #282c34;
-  border: 1px solid red;
+  border: 1px solid ;
   color: red;
   font-size: large;
   font-weight: 500;
 }
 .sym-output{
   background-color: #282c34;
-  border: 1px solid green;
-  color: green;
+  border: 1px solid;
+  color: greenyellow;
   font-size: large;
   font-weight: 500;
 }
