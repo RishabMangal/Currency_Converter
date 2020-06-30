@@ -1,19 +1,10 @@
-.App {
-  text-align: center;
+body{
+  background-color: #282c34;
+  /* overflow-x: hidden; */
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.header{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +15,129 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.money{
+  width:5%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.heading{
+  padding: 1.5%;
+  color:whitesmoke;
+  font-family: cursive;
+}
+
+.date{
+  font-family: cursive;
+}
+.base-group{
+  display: block;
+  text-align: center;
+  padding: 1%;
+  margin: 1%;
+  background-color: rgb(28, 24, 37);
+  font-weight: 600;
+  font-size: larger;
+}
+
+.base{
+  background-color: rgb(155, 8, 23);
+  padding: 0.5%;
+}
+
+.base-title{
+  color:white;
+  font-weight: 500;
+
+}
+
+.base-name{
+  font-weight: 500;
+  font-size: smaller;
+  margin:0.5%;
+}
+.base-currency{
+  font-weight: 700;
+  font-size: larger;
+  color: red;
+}
+.base-currency-symbol{
+  /* margin:   auto; */
+  margin: 0.5%;
+  font-weight: 500;
+
+}
+
+.from{
+  background-color: rgb(115, 245, 133);
+  padding: 0.5%;
+}
+
+.from-name{
+  font-weight: 500;
+  font-size:smaller;
+  margin:0.5%;
+}
+.from-currency{
+  font-weight: 700;
+  font-size: larger;
+  color: green;
+}
+.from-currency-symbol{
+  /* margin:   auto; */
+  font-weight: 500;
+  margin: 0.5%;
+}
+.fromAmt{
+  /* background-color: red; */
+  color: red;
+  font-weight: 800;
+  font-size: larger;
+}
+.to{
+  background-color: rgb(185, 233, 241);
+  padding: 0.5%;
+}
+
+.to-name{
+  font-weight: 500;
+  font-size:smaller;
+  margin:0.5%;
+}
+.to-currency{
+  font-weight: 700;
+  font-size: larger;
+  color: #007bff;
+}
+.to-currency-symbol{
+  /* margin:   auto; */
+  font-weight: 500;
+  margin: 0.5%;
+}
+.toAmt{
+  background-color: green;
+  color: green;
+  font-weight: 800;
+  font-size: larger;
+}
+
+
+.sym{
+  background-color: #282c34;
+  border: 1px solid;
+  color: aqua;
+  font-size: large;
+  font-weight: 500;
+}
+.sym-input{
+  background-color: #282c34;
+  border: 1px solid red;
+  color: red;
+  font-size: large;
+  font-weight: 500;
+}
+.sym-output{
+  background-color: #282c34;
+  border: 1px solid green;
+  color: green;
+  font-size: large;
+  font-weight: 500;
 }
