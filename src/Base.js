@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
 // import { cur } from "./maal";
+import { randomColor } from "randomcolor";
 
 class Base extends Component {
   render() {
@@ -18,7 +19,7 @@ class Base extends Component {
     var d = new Date(date).toUTCString();
     return (
       <div className="base-group">
-        <div className="base">
+        <div className="base" style={{backgroundColor:randomColor()}}>
           <span className="base-title"> Base Currency </span>:{" "}
           <span className="base-currency">
             <span className="base-currency-symbol">
@@ -29,7 +30,7 @@ class Base extends Component {
           <span className="btn btn-warning float-right date">{d}</span>
         </div>
         {fromCode ? (
-          <div className="from">
+          <div className="from" style={{backgroundColor:randomColor()}}>
             <span>
               <span className="base-currency">
                 <span className="base-currency-symbol">
@@ -51,7 +52,7 @@ class Base extends Component {
         ) : null}
 
         {toCode ? (
-          <div className="to">
+          <div className="to" style={{backgroundColor:randomColor({luminosity:"bright"})}}>
             <span>
               <span className="base-currency">
                 <span className="base-currency-symbol">

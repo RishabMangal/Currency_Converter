@@ -113,7 +113,7 @@ body{
   margin: 0.5%;
 }
 .toAmt{
-  background-color: green;
+  /* background-color: green; */
   color: green;
   font-weight: 800;
   font-size: larger;

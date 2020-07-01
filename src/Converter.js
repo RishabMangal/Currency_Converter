@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 // import cc from 'currency-codes';
 import getSymbolFromCurrency from "currency-symbol-map";
-import { cur } from "./maal";
+import { currencyName } from "./maal";
 import Base from "./Base";
+import BarChart from './BarChart';
 class Converter extends Component {
   constructor(props) {
     super(props);
@@ -199,7 +200,28 @@ class Converter extends Component {
   }
 
   onChangeHandler = (e) => {
-    this.setState({ fromAmt: e.target.value }, () => {});
+    this.setState({ fromAmt: e.target.value }, () => {
+      if(this.state.fromAmt === ""){this.setState({toAmt:""},()=>{})}
+      if (this.state.fromAmt  && this.state.toCode && this.state.fromCode) {
+        console.log("to:", this.state.to);
+        console.log("from: ", this.state.from);
+        console.log("fromAmt:", this.state.fromAmt);
+        let ans = (this.state.to / this.state.from) * this.state.fromAmt;
+        this.setState({ toAmt: ans }, () => console.log("ans is: ", ans));
+      }
+    });
+  };
+  onChangeHandler2 = (e) => {
+    this.setState({ toAmt: e.target.value }, () => {
+      if(this.state.toAmt === ""){this.setState({fromAmt:""},()=>{})}
+      if (this.state.toAmt  && this.state.toCode && this.state.fromCode) {
+        console.log("to:", this.state.to);
+        console.log("from: ", this.state.from);
+        console.log("fromAmt:", this.state.fromAmt);
+        let ans = (this.state.from / this.state.to) * this.state.toAmt;
+        this.setState({ fromAmt: ans }, () => console.log("ans is: ", ans));
+      }
+    });
   };
 
   onFromChange = (e) => {
@@ -212,18 +234,19 @@ class Converter extends Component {
         fromCode: Object.keys(this.state.data.rates)[
           e.target.selectedIndex - 1
         ],
+        fromName: currencyName.symbols[Object.keys(this.state.data.rates)[e.target.selectedIndex - 1]]
       },
       () => {
         console.log(this.state.from);
         console.log(this.state.fromCode);
+        if (this.state.toAmt  && this.state.toCode && this.state.fromCode) {
+          console.log("to:", this.state.to);
+          console.log("from: ", this.state.from);
+          console.log("fromAmt:", this.state.fromAmt);
+          let ans = (this.state.from / this.state.to) * this.state.toAmt;
+          this.setState({ fromAmt: ans }, () => console.log("ans is: ", ans));
+        }
       }
-    );
-    cur.map((c, ind) =>
-      c.code === Object.keys(this.state.data.rates)[e.target.selectedIndex - 1]
-        ? this.setState({ fromName: c.currency }, () =>
-            console.log("I am Chanegd", this.state.fromName)
-          )
-        : null
     );
   };
   onToChange = (e) => {
@@ -234,11 +257,12 @@ class Converter extends Component {
         to: e.target.value,
         toIndex: e.target.selectedIndex,
         toCode: Object.keys(this.state.data.rates)[e.target.selectedIndex - 1],
+        toName: currencyName.symbols[Object.keys(this.state.data.rates)[e.target.selectedIndex - 1]]
       },
       () => {
         console.log(this.state.to);
         console.log(this.state.toCode);
-        if (this.state.fromAmt) {
+        if (this.state.fromAmt  && this.state.toCode && this.state.fromCode) {
           console.log("to:", this.state.to);
           console.log("from: ", this.state.from);
           console.log("fromAmt:", this.state.fromAmt);
@@ -246,13 +270,6 @@ class Converter extends Component {
           this.setState({ toAmt: ans }, () => console.log("ans is: ", ans));
         }
       }
-    );
-    cur.map((c, ind) =>
-      c.code === Object.keys(this.state.data.rates)[e.target.selectedIndex - 1]
-        ? this.setState({ toName: c.currency }, () =>
-            console.log("I am Chanegd to", this.state.toName)
-          )
-        : null
     );
   };
 
@@ -263,11 +280,7 @@ class Converter extends Component {
       .then((res) => res.json())
       .then((resjson) => this.setState({ data: resjson, loading: false }));
     console.log(this.state.data);
-    cur.map((c, ind) =>
-      c.code === this.state.data.base
-        ? this.setState({ baseName: c.currency })
-        : null
-    );
+    this.setState({ baseName: currencyName.symbols[this.state.data.base] });
   }
   render() {
     const { rates, base, date } = this.state.data;
@@ -325,7 +338,8 @@ class Converter extends Component {
                       {k}
                       {"   "}
                       {" [ "}
-                      {cur.map((c, ind) => (c.code === k ? c.currency : null))}
+                      {/* {cur.map((c, ind) => (c.code === k ? c.currency : null))} */}
+                      {currencyName.symbols[k]}
                       {" ] "}
                       {" ( "}
                       {getSymbolFromCurrency(k)}
@@ -373,16 +387,11 @@ class Converter extends Component {
                       }}
                       value={rates[k]}
                       key={i}
-                      onClick={() =>
-                        this.setState({ toCode: k }, () =>
-                          console.log("I a Clicked", k)
-                        )
-                      }
                     >
                       {k}
                       {"   "}
                       {" [ "}
-                      {cur.map((c, ind) => (c.code === k ? c.currency : null))}
+                      {currencyName.symbols[k]}
                       {" ] "}
                       {" ( "}
                       {getSymbolFromCurrency(k)}
@@ -392,7 +401,7 @@ class Converter extends Component {
                 </select>
               </div>
             </div>
-            {toAmt ? (
+            {toCode ? (
               <div className="form-group col-sm-3">
                 <div className="input-group-prepend">
                   <div className="input-group-text sym-output">
@@ -401,18 +410,18 @@ class Converter extends Component {
                   <input
                     type="number"
                     className="form-control toAmt"
-                    // id="inputAmt"
-                    // name="inputAmount"
-                    // placeholder={`Enter ${fromName}`}
-                    // onChange={this.onChangeHandler}
-                    value={this.state.toAmt}
-                    readOnly={true}
+                    id="inputAmt"
+                    name="inputAmount"
+                    placeholder={`Enter ${toName}`}
+                    value={toAmt}
+                    onChange={this.onChangeHandler2}
                   />
                 </div>
               </div>
             ) : null}
           </div>
         </form>
+      <BarChart rates={rates}></BarChart>
       </div>
     );
   }
