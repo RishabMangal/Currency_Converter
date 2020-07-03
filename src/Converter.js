@@ -277,8 +277,8 @@ class Converter extends Component {
     );
   };
 
-  componentDidMount() {
-    fetch(
+  async componentDidMount() {
+    await fetch(
       "http://data.fixer.io/api/latest?access_key=68a71656c8dbc1c3e46fc4e55b923445&format=1"
     )
       .then((res) => res.json())
