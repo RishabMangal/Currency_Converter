@@ -19,7 +19,7 @@ class Base extends Component {
     var d = new Date(date).toUTCString();
     return (
       <div className="base-group">
-        <div className="base" style={{backgroundColor:randomColor()}}>
+        <div className="base" style={{color:randomColor({luminosity:"bright",hue:"blue"})}}>
           <span className="base-title"> Base Currency </span>:{" "}
           <span className="base-currency">
             <span className="base-currency-symbol">
@@ -30,7 +30,7 @@ class Base extends Component {
           <span className="btn btn-warning float-right date">{d}</span>
         </div>
         {fromCode ? (
-          <div className="from" style={{backgroundColor:randomColor()}}>
+          <div className="from" style={{color:randomColor({luminosity:"bright",hue:"red"})}}>
             <span>
               <span className="base-currency">
                 <span className="base-currency-symbol">
@@ -52,7 +52,7 @@ class Base extends Component {
         ) : null}
 
         {toCode ? (
-          <div className="to" style={{backgroundColor:randomColor({luminosity:"bright"})}}>
+          <div className="to" style={{color:randomColor({luminosity:"bright",hue:"green"})}}>
             <span>
               <span className="base-currency">
                 <span className="base-currency-symbol">
