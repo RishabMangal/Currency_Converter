@@ -229,15 +229,11 @@ class Converter extends Component {
   };
 
   onFromChange = (e) => {
-    // console.log(e.target.selectedIndex);
-    // fromCode:e.target.options[e.target.selectedIndex].text
     this.setState(
       {
         from: e.target.value,
         fromIndex: e.target.selectedIndex,
-        fromCode: Object.keys(this.state.data.rates)[
-          e.target.selectedIndex - 1
-        ],
+        fromCode: Object.keys(this.state.data.rates)[e.target.selectedIndex - 1],
         fromName:
           currencyName.symbols[
             Object.keys(this.state.data.rates)[e.target.selectedIndex - 1]
@@ -257,8 +253,6 @@ class Converter extends Component {
     );
   };
   onToChange = (e) => {
-    // console.log(e.target.selectedIndex);
-    // fromCode:e.target.options[e.target.selectedIndex].text
     this.setState(
       {
         to: e.target.value,

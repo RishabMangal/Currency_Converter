@@ -24,14 +24,10 @@ class BarChart extends Component {
       this.state.data.push(this.props.rates[k]);
       this.state.bgColors.push(randomColor());
       this.state.brColors.push(randomColor({ format: "rgba" }));
-      //   this.state.hvColors.push(randomColor());
-      //   this.state.hrColors.push(randomColor());
     });
     this.state.bgColors.forEach((c, i) => {
-      this.state.hvColors.push(`${c}90`);
+      this.state.hvColors.push(`${c}50`);
     });
-    console.log(this.state.bgColors[0]);
-    console.log(this.state.hvColors[0]);
   }
 
   render() {
@@ -39,7 +35,6 @@ class BarChart extends Component {
       labels: this.state.labels,
       datasets: [
         {
-          //   backgroundColor: this.state.bgColors.map((c,i)=>pattern.draw("square",c)),
           backgroundColor: pattern.generate(this.state.bgColors),
           borderColor: this.state.brColors,
           borderWidth: 1,
@@ -49,7 +44,9 @@ class BarChart extends Component {
         },
       ],
     };
-    const titleText = `Currencies  w.r.t    ${getSymbolFromCurrency(this.props.base)} 1 ${this.props.baseName}       on    ${this.props.date}`;
+    const titleText = `Currencies  w.r.t    ${getSymbolFromCurrency(
+      this.props.base
+    )} 1 ${this.props.baseName}       on    ${this.props.date}`;
     const options = {
       title: {
         display: true,
@@ -75,7 +72,6 @@ class BarChart extends Component {
             gridLines: {
               offsetGridLines: true,
             },
-            //   barPercentage: 0.5,
           },
         ],
         yAxes: [
@@ -83,7 +79,6 @@ class BarChart extends Component {
             gridLines: {
               offsetGridLines: true,
             },
-            //   barPercentage: 0.4,
           },
         ],
       },
@@ -93,10 +88,9 @@ class BarChart extends Component {
         display: true,
         text: titleText,
         fontSize: 20,
-        // fontColor:randomColor({luminosity:"dark",hue:"blue"})
       },
       label: "test",
-      labels:{display:false},
+      labels: { display: false },
       legend: {
         display: false,
         position: "right",
@@ -115,8 +109,7 @@ class BarChart extends Component {
             gridLines: {
               offsetGridLines: false,
             },
-            display: false
-            //   barPercentage: 0.5,
+            display: false,
           },
         ],
         yAxes: [
@@ -124,8 +117,7 @@ class BarChart extends Component {
             gridLines: {
               offsetGridLines: false,
             },
-            display: false
-            //   barPercentage: 0.4,
+            display: false,
           },
         ],
       },
@@ -134,11 +126,11 @@ class BarChart extends Component {
       <div className="bg-dark" style={{ color: randomColor() }}>
         <div
           style={{
-              color: randomColor({
+            color: randomColor({
               luminosity: "dark",
               format: "rgba",
-              }),
-            backgroundColor:"#11111195"
+            }),
+            backgroundColor: "#11111195",
           }}
         >
           <Bar width={100} height={23} data={data} options={options}></Bar>
@@ -147,15 +139,20 @@ class BarChart extends Component {
           <div
             className="col-sm-6"
             style={{
-              backgroundColor:"#11111195"
+              backgroundColor: "#11111195",
             }}
           >
-            <Pie width={10} height={5} data={data} options={NoLabeloptions}></Pie>
+            <Pie
+              width={10}
+              height={5}
+              data={data}
+              options={NoLabeloptions}
+            ></Pie>
           </div>
           <div
             className="col-sm-6"
             style={{
-              backgroundColor:"#11111195"
+              backgroundColor: "#11111195",
             }}
           >
             <Doughnut
@@ -168,7 +165,7 @@ class BarChart extends Component {
         </div>
         <div
           style={{
-            backgroundColor:"#11111195"
+            backgroundColor: "#11111195",
           }}
         >
           <Line width={100} height={20} data={data} options={options}></Line>
